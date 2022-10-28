@@ -21,3 +21,12 @@ let pokemonList = [
     ]
   }
 ];
+
+//start loop for pokemonList array:
+for (let i=0; i < pokemonList.length; i++){
+  document.write('<p>' + pokemonList[i].name + ': (height: ' + pokemonList[i].height + ') </p>')
+//below is height conditional:
+  if (pokemonList[i].height > 6){
+  document.write('Wow, ' + pokemonList[i].name + ' is a big pokemon!')
+}
+}
