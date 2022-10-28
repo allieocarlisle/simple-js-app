@@ -1,0 +1,19 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+header {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.pikachu {
+  width: 75px;
+  float: left;
+  margin-right: 10px;
+}
