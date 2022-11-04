@@ -1,3 +1,4 @@
+//below is the repository pattern, involving IIFE, to return and add all data
 let pokemonRepository = (function() {
   let pokemonList = [];
 
@@ -14,7 +15,9 @@ let pokemonRepository = (function() {
     getAll: getAll
   };
 })();
+//end of repository pattern
 
+//below is the pokemonList array
 let pokemonList = [
   {
     name: "Bulbasaur",
@@ -38,6 +41,7 @@ let pokemonList = [
     ]
   }
 ];
+//end of pokemonList array
 
 // //start loop for pokemonList array:
 // for (let i=0; i < pokemonList.length; i++){
