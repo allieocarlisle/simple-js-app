@@ -1,3 +1,20 @@
+let pokemonRepository = (function() {
+  let pokemonList = [];
+
+  function add(pokemon) {
+    pokemonList.push(pokemon);
+  }
+
+  function getAll() {
+    return pokemonList;
+  }
+  
+  return {
+    add: add,
+    getAll: getAll
+  };
+})();
+
 let pokemonList = [
   {
     name: "Bulbasaur",
