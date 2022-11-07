@@ -1,6 +1,28 @@
 //below is the repository pattern, involving IIFE, to return and add all data
 let pokemonRepository = (function() {
-  let pokemonList = [];
+  let pokemonList = [
+    {
+      name: "Bulbasaur",
+      height: 7,
+      type: [
+        "grass","monster"
+      ]
+    },
+    {
+      name: "Charmander",
+      height: 6,
+      type: [
+        "dragon","monster"
+      ]
+    },
+    {
+      name: "Squirtle",
+      height: 5,
+      type: [
+        "water", "monster"
+      ]
+    }
+  ];
 
   function add(pokemon) {
     pokemonList.push(pokemon);
@@ -17,33 +39,10 @@ let pokemonRepository = (function() {
 })();
 //end of repository pattern
 
-//below is the pokemonList array
-let pokemonList = [
-  {
-    name: "Bulbasaur",
-    height: 7,
-    type: [
-      "grass","monster"
-    ]
-  },
-  {
-    name: "Charmander",
-    height: 6,
-    type: [
-      "dragon","monster"
-    ]
-  },
-  {
-    name: "Squirtle",
-    height: 5,
-    type: [
-      "water", "monster"
-    ]
-  }
-];
-//end of pokemonList array
+pokemonRepository.getAll().forEach(printArrayDetails);
 
-// //start loop for pokemonList array:
+// below is historical code - keeping for reference
+//start loop for pokemonList array:
 // for (let i=0; i < pokemonList.length; i++){
 //   document.write('<p>' + pokemonList[i].name + ': (height: ' + pokemonList[i].height + ') </p>')
 // //below is height conditional:
