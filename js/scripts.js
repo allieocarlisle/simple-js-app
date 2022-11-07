@@ -37,9 +37,11 @@ let pokemonRepository = (function() {
     getAll: getAll
   };
 })();
-//end of repository pattern
 
 pokemonRepository.getAll().forEach(printArrayDetails);
+//end of repository pattern
+
+
 
 // below is historical code - keeping for reference
 //start loop for pokemonList array:
