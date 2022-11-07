@@ -60,4 +60,3 @@ function printArrayDetails(pokemon) {
     document.write('Wow - that\'s a big pokemon!')
   }
 }
-pokemonList.forEach(printArrayDetails);
