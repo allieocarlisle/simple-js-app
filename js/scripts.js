@@ -31,14 +31,27 @@ let pokemonRepository = (function() {
   function getAll() {
     return pokemonList;
   }
+  function addListItem(pokemon){
+    let myPokemonList = document.querySelector('.pokemon-list');
+    let listItemPokemon = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add('button-class');
+    listItemPokemon.appendChild(button);
+    myPokemonList.appendChild(listItemPokemon);
+  }
   
   return {
     add: add,
     getAll: getAll
+    addListItem: addListItem
   };
 })();
 
-pokemonRepository.getAll().forEach(printArrayDetails);
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon);
+});
+// pokemonRepository.getAll().forEach(printArrayDetails);
 //end of repository pattern
 
 
@@ -54,9 +67,9 @@ pokemonRepository.getAll().forEach(printArrayDetails);
 // }
 
 //the code below uses the forEach() function to iterate over the Pokemon in my pokemonList.
-function printArrayDetails(pokemon) {
-  document.write('<p>' + pokemon.name + ' is ' + pokemon.height + ' m tall.</p>');
-  if (pokemon.height > 6) {
-    document.write('Wow - that\'s a big pokemon!')
-  }
-}
+// function printArrayDetails(pokemon) {
+//   document.write('<p>' + pokemon.name + ' is ' + pokemon.height + ' m tall.</p>');
+//   if (pokemon.height > 6) {
+//     document.write('Wow - that\'s a big pokemon!')
+//   }
+// }
