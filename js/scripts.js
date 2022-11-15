@@ -1,5 +1,5 @@
 //below is the repository pattern, involving IIFE, to return and add all data
-let pokemonRepository = (function() {
+let pokemonRepository = (() => {
   let pokemonList = [
     {
       name: "Bulbasaur",
@@ -21,6 +21,23 @@ let pokemonRepository = (function() {
       type: [
         "water", "monster"
       ]
+    },
+    {
+      name: "Pikachu",
+      height: 4,
+      type: [
+        "field", "fairy"
+      ]
+    },
+    {
+      name: "Jigglypuff",
+      height: 5,
+      type: "fairy"
+    },
+    {
+      name: "Tauros",
+      height: 14,
+      type: "field"
     }
   ];
 
@@ -31,16 +48,24 @@ let pokemonRepository = (function() {
   function getAll() {
     return pokemonList;
   }
+
   function addListItem(pokemon){
     let myPokemonList = document.querySelector('.pokemon-list');
     let listItemPokemon = document.createElement('li');
     let button = document.createElement('button');
+    button.addEventListener('click', function (button) {
+      console.log(button);
+    })
     button.innerText = pokemon.name;
     button.classList.add('button-class');
     listItemPokemon.appendChild(button);
     myPokemonList.appendChild(listItemPokemon);
   }
-  
+
+  function showDetails(pokemon){
+    console.log(pokemonRepository);
+  };
+
   return {
     add: add,
     getAll: getAll,
@@ -50,6 +75,7 @@ let pokemonRepository = (function() {
 
 pokemonRepository.getAll().forEach(function (pokemon) {
   pokemonRepository.addListItem(pokemon);
+  pokemonRepository.showDetails(pokemon)
 });
 // pokemonRepository.getAll().forEach(printArrayDetails);
 //end of repository pattern
