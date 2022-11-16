@@ -75,7 +75,6 @@ let pokemonRepository = (() => {
 
 pokemonRepository.getAll().forEach(function (pokemon) {
   pokemonRepository.addListItem(pokemon);
-  pokemonRepository.showDetails(pokemon)
 });
 // pokemonRepository.getAll().forEach(printArrayDetails);
 //end of repository pattern
