@@ -54,6 +54,7 @@ let pokemonRepository = (() => {
     let listItemPokemon = document.createElement('li');
     let button = document.createElement('button');
     button.addEventListener('click', function (button) {
+      showDetails(pokemon);
       console.log(button);
     })
     button.innerText = pokemon.name;
@@ -63,7 +64,7 @@ let pokemonRepository = (() => {
   }
 
   function showDetails(pokemon){
-    console.log(pokemonRepository);
+    console.log(pokemon);
   };
 
   return {
