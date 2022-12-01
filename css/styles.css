@@ -32,6 +32,8 @@ header {
 
 ul {
   list-style-type: none;
+  column-count: 3;
+  column-gap: 40px;
 }
 
 li {
