@@ -26,7 +26,7 @@ let pokemonRepository = (() => {
 
   function showDetails(pokemon){
     loadDetails(pokemon).then(function () {
-      console.log(pokemon);
+      showModal(pokemon);
     });
   }
 
@@ -115,7 +115,7 @@ let pokemonRepository = (() => {
     });
 
     }
-    
+
   })(); 
 
   return {
