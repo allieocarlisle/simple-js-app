@@ -59,6 +59,65 @@ let pokemonRepository = (() => {
     });
   }
 
+//Create Modal for each Pokemon
+  (function() {
+
+    let modalContainer = document.querySelector('#modal-container');
+
+    function showModal(image, name, height) {
+      modalContainer.innerHTML= '';
+      let modal = document.createElement('div');
+      modal.classList.add('modal');
+
+      let closeButtonElement = document.createElement('button');
+      closeButtonElement.classList.add('modal-close');
+      closeButtonElement.innerText = 'Close';
+      closeButtonElement.addEventListener('click', hideModal);
+
+      let imageElement = document.createElement('img');
+      imageElement.innerText = image;
+
+      let nameElement = document.createElement('h1');
+      nameElement.innerText = name;
+
+      let heightElement = document.createElement('p');
+      heightElement.innerText = height;
+
+      modal.appendChild(closeButtonElement);
+      modal.appendChild(imageElement);
+      modal.appendChild(nameElement);
+      modal.appendChild(heightElement);
+      modalContainer.appendChild(modal);
+
+      modalContainer.classList.add('is-visible');
+    }
+
+    function hideModal() {
+      modalContainer.classList.remove('is-visible') {
+        hideModal();
+      }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+        hideModal();
+      }
+    });
+
+    modalContainer.addEventListener('click', (e) => {
+      let target = e.target;
+      if (target === modalContainer) {
+        hideModal();
+      }
+    });
+
+    document.querySelector('.pokemon-list').addEventListener('click', () => {
+      showModal('Pokemon Image', 'pokemon name', 'pokemon height');
+    });
+
+    }
+    
+  })(); 
+
   return {
     add: add,
     getAll: getAll,
