@@ -93,8 +93,7 @@ let pokemonRepository = (() => {
     }
 
     function hideModal() {
-      modalContainer.classList.remove('is-visible') {
-        hideModal();
+      modalContainer.classList.remove('is-visible');
       }
 
     window.addEventListener('keydown', (e) => {
