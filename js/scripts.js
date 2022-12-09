@@ -11,6 +11,7 @@ let pokemonRepository = (() => {
     return pokemonList;
   }
 
+  //create button for each pokemon
   function addListItem(pokemon){
     let myPokemonList = document.querySelector('.pokemon-list');
     let listItemPokemon = document.createElement('li');
@@ -26,10 +27,11 @@ let pokemonRepository = (() => {
 
   function showDetails(pokemon){
     loadDetails(pokemon).then(function () {
-      showModal(pokemon);
+      showModal(pokemon.imageURL, pokemon.name, pokemon.height);
     });
   }
 
+  // get the name and url for pokemon
   function loadList(){
     return fetch(apiUrl).then(function (response) {
       return response.json();
@@ -46,6 +48,7 @@ let pokemonRepository = (() => {
     })
   }
 
+  // get more info on individual pokemon via api URL
   function loadDetails(item){
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
@@ -59,9 +62,18 @@ let pokemonRepository = (() => {
     });
   }
 
-//Create Modal for each Pokemon
-  (function() {
+  return {
+    add: add,
+    getAll: getAll,
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
+    showDetails: showDetails,
+  };
 
+})();
+
+//Create Modal for each Pokemon
     let modalContainer = document.querySelector('#modal-container');
 
     function showModal(image, name, height) {
@@ -75,7 +87,7 @@ let pokemonRepository = (() => {
       closeButtonElement.addEventListener('click', hideModal);
 
       let imageElement = document.createElement('img');
-      imageElement.innerText = image;
+      imageElement.classList.add('modal-image');
 
       let nameElement = document.createElement('h1');
       nameElement.innerText = name;
@@ -113,26 +125,11 @@ let pokemonRepository = (() => {
       showModal('Pokemon Image', 'pokemon name', 'pokemon height');
     });
 
-    }
-
-  })(); 
-
-  return {
-    add: add,
-    getAll: getAll,
-    addListItem: addListItem,
-    loadList: loadList,
-    loadDetails: loadDetails,
-    showDetails: showDetails
-  };
-})();
-
 pokemonRepository.loadList().then(function () {
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
 });
-
 
 
 // below is historical code - keeping for reference
