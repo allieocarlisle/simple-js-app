@@ -27,7 +27,7 @@ let pokemonRepository = (() => {
 
   function showDetails(pokemon){
     loadDetails(pokemon).then(function () {
-      showModal(pokemon.imageURL, pokemon.name, pokemon.height);
+      showModal(pokemon.imageUrl, pokemon.name, pokemon.height);
     });
   }
 
@@ -88,6 +88,7 @@ let pokemonRepository = (() => {
 
       let imageElement = document.createElement('img');
       imageElement.classList.add('modal-image');
+      imageElement.setAttribute('src', image);
 
       let nameElement = document.createElement('h1');
       nameElement.innerText = name;
@@ -119,10 +120,6 @@ let pokemonRepository = (() => {
       if (target === modalContainer) {
         hideModal();
       }
-    });
-
-    document.querySelector('.pokemon-list').addEventListener('click', () => {
-      showModal('Pokemon Image', 'pokemon name', 'pokemon height');
     });
 
 pokemonRepository.loadList().then(function () {
