@@ -4,16 +4,13 @@
 
 .pokedex {
  image-rendering: auto;
+ display: flex;
+ justify-content: center;
 }
 
 body {
   font-family: 'Noto Sans', sans-serif;
   background-color: #b4dfff;
-}
-
-header {
-  display: flex;
-  justify-content: center;
 }
 
 .button-class {
