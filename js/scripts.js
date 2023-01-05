@@ -1,7 +1,10 @@
 //below is the repository pattern, involving IIFE, to return and add all data
 let pokemonRepository = (() => {
+
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let myPokemonList = $('pokemon-list');
+
 
   function add(pokemon) {
     pokemonList.push(pokemon);
@@ -13,25 +16,18 @@ let pokemonRepository = (() => {
 
   //create button for each pokemon
   function addListItem(pokemon){
-    let myPokemonList = document.querySelector('.pokemon-list');
-    let listItemPokemon = document.createElement('li');
-    let button = document.createElement('button');
-    button.addEventListener('click', function (button) {
-      showDetails(pokemon);
-    })
-    button.innerText = pokemon.name;
-    button.classList.add('button-class');
-    listItemPokemon.appendChild(button);
-    myPokemonList.appendChild(listItemPokemon);
-  }
+    let listItemPokemon = $('<li class="list-group-item"></li>');
+    let button = $('<button class="pokemon-button btn btn-info" data-target="#pokemonModal" data-toggle="modal">' + pokemon.name + '</button>');
 
-  function showDetails(pokemon){
-    loadDetails(pokemon).then(function () {
-      showModal(pokemon.imageUrl, pokemon.name, pokemon.height, pokemon.types, pokemon.abilities);
+    listItemPokemon.append(button);
+    myPokemonList.append(listItemPokemon);
+
+    button.on('click', function() {
+      showDetails(pokemon);
     });
   }
 
-  // get the name and url for pokemon
+  // get the name and url for pokemon via API
   function loadList(){
     return fetch(apiUrl).then(function (response) {
       return response.json();
@@ -48,7 +44,7 @@ let pokemonRepository = (() => {
     })
   }
 
-  // get more info on individual pokemon via api URL
+  // get more info on individual pokemon via API URL
   function loadDetails(item){
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
@@ -57,56 +53,41 @@ let pokemonRepository = (() => {
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
-      item.abilities = details.abilities.map(abilities) => abilities.ability.name);
+      item.abilities = details.abilities.map(abilities => abilities.ability.name);
     }).catch(function (e) {
       console.error(e);
     });
   }
 
-  let imageElement = document.createElement('img');
-  imageElement.classList.add('modal-image');
-  imageElement.setAttribute('src', image);
-
-  let nameElement = document.createElement('h1');
-  nameElement.innerText = name;
-
-  let heightElement = document.createElement('p');
-  heightElement.innerText = height;
-
-  function showModal(item) {
-    //first thing is to create modal variables, these will basically a selector 
+  function showDetails(pokemon){
+    loadDetails(pokemon).then(function () {
+      showModal(pokemon);
+    });
+  }
+  
+  function showModal(pokemon) {
     let modalBody = $(".modal-body");
     let modalTitle = $(".modal-title");
-    let modalHeader = $(".modal-header");
     // let $modalContainer = $("#modal-container");
-    
-    // clear existing content of the modal - to start fresh every time you open a new pokemon
-    // modalHeader.empty();
     
     modalTitle.empty();
     modalBody.empty();
  
-    //creating element for name in modal content
-    let nameElement = $("<h1>" + item.name + "</h1>");
-    // // creating img in modal content 
+    let nameElement = $("<h1>" + pokemon.name + "</h1>");
     let imageElementFront = $('<img class="modal-img" style="width:50%">');
-    imageElementFront.attr("src", item.imageUrl);
-    // // creating element for height in modal content
-    let heightElement = $("<p>" + "height : " + item.height + "</p>");
-    // // creating element for weight in modal content
-    let typesElement = $("<p>" + "types : " + item.types + "</p>");
-    // // creating element for abilities in modal content
-    let abilitiesElement = $("<p>" + "abilities : " + item.abilities + "</p>");
+    imageElementFront.attr("src", pokemon.imageUrl);
+    let heightElement = $("<p>" + "height : " + pokemon.height + "</p>");
+    let typesElement = $("<p>" + "types : " + pokemon.types + "</p>");
+    let abilitiesElement = $("<p>" + "abilities : " + pokemon.abilities + "</p>");
  
     modalTitle.append(nameElement);
     modalBody.append(imageElementFront);
-    modalBody.append(imageElementBack);
     modalBody.append(heightElement);
-    modalBody.append(weightElement);
     modalBody.append(typesElement);
     modalBody.append(abilitiesElement);
   }
 
+  // KEEP 112 - 127 & Add showDetailsModal: showDetailsModal below showDetails //
   return {
     add: add,
     getAll: getAll,
@@ -114,6 +95,7 @@ let pokemonRepository = (() => {
     loadList: loadList,
     loadDetails: loadDetails,
     showDetails: showDetails,
+    showModal: showModal
   };
 
 })();
@@ -127,6 +109,17 @@ pokemonRepository.loadList().then(function () {
 // below is historical Modal before Bootstrap was used 
 // //Create Modal for each Pokemon
 //     let modalContainer = document.querySelector('#modal-container');
+
+  // let imageElement = document.createElement('img');
+  // imageElement.classList.add('modal-image');
+  // imageElement.setAttribute('src', image);
+
+  // let nameElement = document.createElement('h1');
+  // nameElement.innerText = name;
+
+  // let heightElement = document.createElement('p');
+  // heightElement.innerText = height;
+
 
 //     function showModal(image, name, height) {
 //       modalContainer.innerHTML= '';
@@ -164,23 +157,3 @@ pokemonRepository.loadList().then(function () {
     //     hideModal();
     //   }
     // });
-
-
-
-// below is historical code - keeping for reference
-//start loop for pokemonList array:
-// for (let i=0; i < pokemonList.length; i++){
-//   document.write('<p>' + pokemonList[i].name + ': (height: ' + pokemonList[i].height + ') </p>')
-// //below is height conditional:
-//   if (pokemonList[i].height > 6){
-//   document.write('Wow, ' + pokemonList[i].name + ' is a big pokemon!')
-// }
-// }
-
-//the code below uses the forEach() function to iterate over the Pokemon in my pokemonList.
-// function printArrayDetails(pokemon) {
-//   document.write('<p>' + pokemon.name + ' is ' + pokemon.height + ' m tall.</p>');
-//   if (pokemon.height > 6) {
-//     document.write('Wow - that\'s a big pokemon!')
-//   }
-// }
