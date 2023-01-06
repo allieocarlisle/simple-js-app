@@ -3,13 +3,12 @@
 }
 
 body {
-  margin-top: 9vh;
   font-family: 'Noto Sans', sans-serif;
   background-color: #b4dfff;
 }
 
-.bg-light {
-  color: #fbd743;
+h3 {
+  font-weight: 700;
 }
 
 .pokedex-logo {
@@ -36,20 +35,23 @@ body {
   background-color: #ff3535;
 }
 
-ul {
+.pokemon-list {
   list-style-type: none;
+  margin: 0.5;
+  padding: 0.5;
+  display: grid;
+  width: 90%;
+  max-width: 1280px;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 300px);
+  margin-top: 9vh;
 }
+
 
 li {
   margin-bottom: 10px;
   text-align: center;
   display: inline-block;
-}
-
-div.container {
-  margin-bottom: 50px;
-  padding-right: 100px;
-  padding-left: 100px;
 }
 
 #modal-container {
@@ -78,7 +80,8 @@ div.container {
   background: #fff;
   padding: 15px;
   width: 100%;
-  max-width: 700px;
+  max-width: 75%;
   text-align: left;
   display: none;
+  border: 10px solid #b4dfff;
 }
