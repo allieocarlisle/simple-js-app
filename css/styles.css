@@ -80,13 +80,11 @@ li {
 
 .modal {
   margin: auto;
-  display: inline-block;
   box-sizing: border-box;
-  background: #fff;
   padding: 15px;
-  width: 100%;
-  max-width: 75%;
-  text-align: left;
-  display: none;
-  border: 10px solid #b4dfff;
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
