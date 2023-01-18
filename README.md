@@ -1,8 +1,8 @@
 # Pokedex App
 
-- Loads list of Pokemon via API
+- Loads list of Pokemon via the Pokemon API [linked here](https://pokeapi.co/api/v2/pokemon/?limit=150)
 - Uses HTML, CSS, and JS (along with jQuery and Bootstrap)
-- Displays the list in a responsive layout
-- Shows more details (like image, height, type, and abilities) of each pokemon using UI patterns
+- Displays a list of 150 pokemon
+- Click on a button to see more details on a pokemon (like image, height, type, and abilities)
 
 [Follow this link](https://allieocarlisle.github.io/simple-js-app/) to view the Pokedex.
